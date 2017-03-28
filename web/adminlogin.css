@@ -29,7 +29,7 @@ box-sizing: border-box;
 }
 body {
 font-family: Arial;
-background-color: #3498DB;
+background-color: #26A69A;
 padding: 50px;
 }
 input {
@@ -45,7 +45,7 @@ transition: border .5s;
 }
 
 input:focus {
-border: 2px solid #3498DB;
+border: 2px solid #26A69A;
 box-shadow: none;
 }
 .btn {

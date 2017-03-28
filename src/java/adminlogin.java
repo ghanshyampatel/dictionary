@@ -14,7 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 /**
  *
- * @author Ghanshyam Patel
+ 
  */
 public class adminlogin extends HttpServlet {
 
@@ -53,10 +53,10 @@ public class adminlogin extends HttpServlet {
                  out.println("<font size='6' color=blue><center>" + msg + "</font>");
                 }  
                  else{  
-                 RequestDispatcher requestdispatcher=request.getRequestDispatcher("/adminlogin.html");    
+                 RequestDispatcher requestdispatcher=request.getRequestDispatcher("/login.html");    
                  requestdispatcher.include(request,response);
                  msg="Failed has been inserted";
-                 out.println("<font size='6' color=blue><center>" + msg + "</font>");
+                 out.println("<font size='6' color=red><center>" + msg + "</font>");
                 } 
                 pst.close();
             }

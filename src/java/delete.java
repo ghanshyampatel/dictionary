@@ -6,6 +6,9 @@
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,9 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- *
+ * 
  */
-public class login extends HttpServlet {
+public class delete extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -29,29 +32,46 @@ public class login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String user=request.getParameter("login_name");
-        String pwd=request.getParameter("login_pwd");
         response.setContentType("text/html;charset=UTF-8");
+        String word=request.getParameter("admin_word");
         try (PrintWriter out = response.getWriter()) {
-            if(user.equals("admin"))
+          try
             {
-                response.sendRedirect("adminlogin.html");
+                Class.forName("com.mysql.jdbc.Driver");  
+                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionory","root","tiger");
+                String query="delete from words where word=?";
+                PreparedStatement pst =con.prepareStatement(query );  
+
+                pst.setString(1,word);  
+                      
+                int i = pst.executeUpdate();
+                String msg=" ";
+                 if(i>0)
+                 {  
+                 RequestDispatcher requestdispatcher=request.getRequestDispatcher("/adminlogin.html");    
+                 requestdispatcher.include(request,response);
+                 msg="Word has been deleted";
+                 out.println("<font size='6' color=blue><center>" + msg + "</font>");
+                }  
+                 else{  
+                 RequestDispatcher requestdispatcher=request.getRequestDispatcher("/login.html");    
+                 requestdispatcher.include(request,response);
+                 msg="Error occure during deletion";
+                 out.println("<font size='6' color=red><center>" + msg + "</font>");
+                } 
+                pst.close();
             }
-            else
+            catch(Exception e)
             {
-              RequestDispatcher requestdispatcher=request.getRequestDispatcher("/login.html");    
-              requestdispatcher.include(request,response);
-              String msg="Enter Correct username and password";
-              out.println("<font size='6' color=red><center>" + msg + "</font>");  
+              out.println(e);  
             }
-            /* TODO output your page here. You may use following sample code. 
-            out.println("<!DOCTYPE html>");
+            /*out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet login</title>");            
+            out.println("<title>Servlet adminlogin</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet adminlogin at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");*/
         }

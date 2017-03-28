@@ -9,21 +9,30 @@ and open the template in the editor.
         <title></title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width">
-        <style>
-            input{
-                font-size:24px;
-            }
-            label{
-                font-size:24px;
-            }
-           
-        </style>
+        <link rel="stylesheet" type="text/css" href="login.css">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+        <script src="search.js"></script>   
     </head>
-    <body bgcolor="#AED6F1">
+    <body >
         <form method="GET" action="valid_page1">
             <h3><p align="right"><a href="login.html">Admin Login</a></p></h3>
-        <center><label><h2>Online Dictionary</h2></label>
-        <h3><label>Enter Word : </label><input type="text" name="word1"><br><br></h3>
-    <input type="submit" value="Search"></center>
+        <div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Dictionary</h1>
+			</div>
+
+			<div class="login-form">
+				<div class="control-group">
+				<input type="text" class="login-field" value="" placeholder="Enter Word" name="word1">
+				<label></label>
+				</div>
+
+				<input type="submit" class="btn">
+			</div>
+		</div>
+	</div>
         </form></body>
 </html>

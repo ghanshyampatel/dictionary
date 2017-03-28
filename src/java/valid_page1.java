@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author Ghanshyam Patel
+ 
  */
 public class valid_page1 extends HttpServlet {
 
@@ -36,7 +36,7 @@ public class valid_page1 extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String word_var=request.getParameter("word1");
         try (PrintWriter out = response.getWriter()) {
-            //out.println("<link rel=\"stylesheet\" type=\"text/css\" href=\"dictionary.css\"");
+            out.println("<link rel="+"stylesheet"+"type="+"text/css"+"href="+"login.css>");
             try{  
                     Class.forName("com.mysql.jdbc.Driver");  
                     Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionory","root","tiger");  
@@ -45,12 +45,12 @@ public class valid_page1 extends HttpServlet {
                     if(rs.next())  {  
                         RequestDispatcher requestdispatcher=request.getRequestDispatcher("/index.html");    
                         requestdispatcher.include(request,response);
-                        out.println("<center><h2>Word : "+rs.getString(1)+"<br>Meaning : "+rs.getString(2)+"</h2></center>");    
+                        out.println("<div class=\"login-screen\"><center><h2>Word : "+rs.getString(1)+"<br>Meaning : "+rs.getString(2)+"</h2></center></div>");    
                     }
                     else{
                          RequestDispatcher requestdispatcher=request.getRequestDispatcher("/index.html");    
                          requestdispatcher.include(request,response);
-                         out.println("<center><h2>Sorry,word not found in dictionary... <br> Please enter a valid word</h2></center>");
+                         out.println("<div class=\"login-screen\"><center><h2>Sorry,word not found in dictionary... <br> Please enter a valid word</h2></center></div>");
                     }
                     con.close(); 
                     
